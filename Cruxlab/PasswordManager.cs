@@ -2,6 +2,12 @@
 {
     public class PasswordManager
     {
+        private const int REQUIRED_IDX = 0;
+        private const int MINMAX_IDX = 1;
+        private const int MIN_IDX = 0;
+        private const int MAX_IDX = 1;
+        private const int PASS_IDX = 2;
+
         private List<PasswordProperties> GetPasswordProperties(string content)
         {
             var result = new List<PasswordProperties>();
@@ -12,11 +18,11 @@
             foreach (var line in lines)
             {
                 var props = line.Split(' ');
-                var required = props[0][0];
-                var minMax = props[1].Replace(":", string.Empty).Split('-');
-                var min = int.Parse(minMax[0]);
-                var max = int.Parse(minMax[1]);
-                var password = props[2];
+                var required = props[REQUIRED_IDX][0];
+                var minMax = props[MINMAX_IDX].Replace(":", string.Empty).Split('-');
+                var min = int.Parse(minMax[MIN_IDX]);
+                var max = int.Parse(minMax[MAX_IDX]);
+                var password = props[PASS_IDX];
 
                 result.Add(new PasswordProperties()
                 {
